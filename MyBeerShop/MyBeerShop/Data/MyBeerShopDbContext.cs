@@ -40,7 +40,6 @@ namespace MyBeerShop.Data
                 new BeerType { Id = 3, Name = "" }
             );
 
-            var hasher = new PasswordHasher<Customer>();
 
             builder.Entity<Beer>().HasData(
                 new Beer
@@ -74,7 +73,7 @@ namespace MyBeerShop.Data
                  }
             );
 
-            builder.Entity<Customer>().HasData(
+           /* builder.Entity<Customer>().HasData(
                 new Customer
                 {
                     Id = "BC4219EA-6BE7-47E2-8D2C-A0740BED3151",
@@ -93,7 +92,7 @@ namespace MyBeerShop.Data
                     NormalizedEmail = "ADMIN@GMAIL.COM",
                     PasswordHash = hasher.HashPassword(null, "admin123")
                 }
-            );
+            );*/
         }
     }
 }
