@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Identity;
-
+using MyBeerShop.Data.Entities;
 
 namespace MyBeerShop.Models.DataGenerator
 {
@@ -37,5 +37,5 @@ namespace MyBeerShop.Models.DataGenerator
 
             return users;
         }
-    }
+        }
 }

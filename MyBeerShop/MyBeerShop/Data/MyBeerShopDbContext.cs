@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using MyBeerShop.Data.Entities;
+using static System.Net.WebRequestMethods;
 
 namespace MyBeerShop.Data
 {
@@ -45,14 +46,14 @@ namespace MyBeerShop.Data
                 new Beer
                 {
                     Id = 1,
-                    BeerName = "Omnipollo",
-                    ImageUrl = "image_url",
-                    Description = "Citrus beer",
-                    Price = 5.0M,
-                    Producer = "Producer A",
+                    BeerName = "Hornbeer",
+                    ImageUrl = "https://winevybe.com/wp-content/uploads/Hornbeer-Hornbeer-Happy-Hoppy-Viking.png",
+                    Description = "Dark beer",
+                    Price = 8.0M,
+                    Producer = "HornBeer",
                     CriticScore = "71/100",
-                    AlcoholBV = "6.20%",
-                    TestingNotes = "Lemon-yellow, full-bodied, cloudy, very strongly hopped, citrus notes, pomelo notes, currant leaf notes, light grassy notes, fresh, refreshing",
+                    AlcoholBV = "9.30%",
+                    TestingNotes = "\r\nBrown, full-bodied, cloudy, very strongly hopped, caramel malt notes, grapefruity, dried fruits, syrupy, light cocoa notes, spicy",
                     Packaging = "Bottle",
                     BeerTypeId = 1
                 },
@@ -60,14 +61,14 @@ namespace MyBeerShop.Data
                  new Beer
                  {
                      Id = 2,
-                     BeerName = "Ale Beer",
-                     ImageUrl = "image_url",
+                     BeerName = "Pohjoisen panimo Maistila",
+                     ImageUrl = "https://winevybe.com/wp-content/uploads/Pohjoisen-panimo-Maistila-Maistila-Aprikoi-Saison.png",
                      Description = "A strong beer.",
-                     Price = 6.0M,
-                     Producer = "Producer B",
-                     CriticScore = "66/100",
-                     AlcoholBV = "6.0%",
-                     TestingNotes = "Golden-yellow, full-bodied, strongly hopped, ripe fruit notes, malt biscuit notes, light grapefruit notes, herbal notes, balanced",
+                     Price = 4.0M,
+                     Producer = "Pohjoisen panimo Maistila",
+                     CriticScore = "68/100",
+                     AlcoholBV = "6.60%",
+                     TestingNotes = "Orange-yellow, medium-bodied, cloudy, with a rich head, mildly hopped, apricot notes, fruity",
                      Packaging = "Bottle",
                      BeerTypeId = 2
                  }
