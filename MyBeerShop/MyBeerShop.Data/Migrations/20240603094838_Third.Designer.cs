@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using MyBeerShop.Data;
 
@@ -11,9 +12,10 @@ using MyBeerShop.Data;
 namespace MyBeerShop.Data.Migrations
 {
     [DbContext(typeof(MyBeerShopDbContext))]
-    partial class MyBeerShopDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240603094838_Third")]
+    partial class Third
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -220,7 +222,7 @@ namespace MyBeerShop.Data.Migrations
                             BeerTypeId = 1,
                             CriticScore = "71/100",
                             Description = "Dark beer",
-                            ImageUrl = "https://winevybe.com/wp-content/uploads/Hornbeer-Hornbeer-Happy-Hoppy-Viking.png",
+                            ImageUrl = "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcQyol6lKtIlDnBU7UYll0IzynwyWMQ5LAubMwiBALqqTtL2lmB1",
                             Packaging = "Bottle",
                             Price = 8.0m,
                             Producer = "HornBeer",
