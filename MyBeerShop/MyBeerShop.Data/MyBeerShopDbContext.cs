@@ -37,8 +37,7 @@ namespace MyBeerShop.Data
             // Seed data
             builder.Entity<BeerType>().HasData(
                 new BeerType { Id = 1, Name = "Omnipollo" },
-                new BeerType { Id = 2, Name = "Ale" },
-                new BeerType { Id = 3, Name = "" }
+                new BeerType { Id = 2, Name = "Ale" }
             );
 
 

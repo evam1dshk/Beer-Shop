@@ -1,5 +1,22 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@model IEnumerable<MyBeerShop.Models.Beers.BeerViewModel>
+
 @{
+    ViewData["Title"] = "All Beers";
 }
+
+<h2 class="my-4">All Beers</h2>
+
+<div class="row">
+    @foreach (var beer in Model)
+    {
+        <div class="col-md-4 mb-4">
+            <div class="card">
+                <img class="card-img-top" src="@beer.ImageUrl" alt="@beer.BeerName" style="height: 200px; object-fit: cover;">
+                <div class="card-body">
+                    <h5 class="card-title">@beer.BeerName</h5>
+                    <p class="card-text">@beer.Price.ToString("C")</p>
+                </div>
+            </div>
+        </div>
+    }
+</div>
