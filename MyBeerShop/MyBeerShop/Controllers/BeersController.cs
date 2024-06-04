@@ -29,5 +29,30 @@ namespace MyBeerShop.Controllers
 
             return View(beers);
         }
+
+        public IActionResult Details(int id)
+        {
+            var beer = _context.Beers
+                .Where(b => b.Id == id)
+                .Select(b => new BeersDetailsViewModel
+                {
+                    BeerName = b.BeerName,
+                    ImageUrl = b.ImageUrl,
+                    Description = b.Description,
+                    Price = b.Price,
+                    Producer = b.Producer,
+                    CriticScore = b.CriticScore,
+                    AlcoholBV = b.AlcoholBV,
+                    TestingNotes = b.TestingNotes,
+                    Packaging = b.Packaging
+                }).FirstOrDefault();
+
+            if (beer == null)
+            {
+                return NotFound();
+            }
+
+            return View(beer);
+        }
     }
 }

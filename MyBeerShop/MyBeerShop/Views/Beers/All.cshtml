@@ -10,13 +10,15 @@
     @foreach (var beer in Model)
     {
         <div class="col-md-4 mb-4">
-            <div class="card">
-                <img class="card-img-top" src="@beer.ImageUrl" alt="@beer.BeerName" style="height: 200px; object-fit: cover;">
-                <div class="card-body">
+            <div class="card" style="height: 650px">
+                <img class="card-img-top" src="@beer.ImageUrl" alt="@beer.BeerName" style="height: 500px; object-fit: cover;">
+                <div class="card-body d-flex flex-column">
                     <h5 class="card-title">@beer.BeerName</h5>
                     <p class="card-text">@beer.Price.ToString("C")</p>
+                    <div class="mt-auto d-flex justify-content-center">
+                        <a href="@Url.Action("Details", "Beers", new { id = beer.Id })" class="btn btn-primary">View More</a>
+                    </div>
                 </div>
             </div>
         </div>
     }
-</div>
