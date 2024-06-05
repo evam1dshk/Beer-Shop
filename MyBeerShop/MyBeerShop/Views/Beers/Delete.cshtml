@@ -1,0 +1,27 @@
+﻿@model MyBeerShop.Models.Beers.BeerViewModel
+
+@{
+    ViewData["Title"] = "Delete Beer";
+}
+
+<h2>Delete Beer</h2>
+
+<div class="card">
+    <div class="card-body">
+        <h5 class="card-title">@Model.BeerName</h5>
+        <p class="card-text">Producer: @Model.Producer</p>
+        <p class="card-text">Price: @Model.Price.ToString("C")</p>
+        <p class="card-text">Critic Score: @Model.CriticScore</p>
+        <p class="card-text">Alcohol BV: @Model.AlcoholBV</p>
+        <p class="card-text">Description: @Model.Description</p>
+        <p class="card-text">Testing Notes: @Model.TestingNotes</p>
+        <p class="card-text">Packaging: @Model.Packaging</p>
+    </div>
+    <div class="card-footer">
+        <form asp-action="DeleteConfirmed" method="post">
+            <input type="hidden" asp-for="Id" />
+            <button type="submit" class="btn btn-danger">Delete</button>
+            <a href="@Url.Action("All", "Beers")" class="btn btn-secondary">Cancel</a>
+        </form>
+    </div>
+</div>

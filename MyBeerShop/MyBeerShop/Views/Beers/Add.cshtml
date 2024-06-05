@@ -1,0 +1,9 @@
+﻿@model MyBeerShop.Models.Beers.BeerViewModel
+
+@{
+    ViewData["Title"] = "Add Beer";
+}
+
+<h2 class="my-4">Add Beer</h2>
+
+@await Html.PartialAsync("_BeerFormPartial", Model)

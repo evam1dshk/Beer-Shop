@@ -15,10 +15,13 @@
                 <div class="card-body d-flex flex-column">
                     <h5 class="card-title">@beer.BeerName</h5>
                     <p class="card-text">@beer.Price.ToString("C")</p>
-                    <div class="mt-auto d-flex justify-content-center">
+                    <div class="mt-auto d-flex justify-content-between">
                         <a href="@Url.Action("Details", "Beers", new { id = beer.Id })" class="btn btn-primary">View More</a>
+                        <a href="@Url.Action("Edit", "Beers", new { id = beer.Id })" class="btn btn-secondary">Edit</a>
+                        <a href="@Url.Action("Delete", "Beers", new { id = beer.Id })" class="btn btn-danger">Delete</a>
                     </div>
                 </div>
             </div>
         </div>
     }
+</div>
