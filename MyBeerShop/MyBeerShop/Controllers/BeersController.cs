@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using MyBeerShop.Data;
 using MyBeerShop.Data.Entities;
@@ -16,6 +17,7 @@ namespace MyBeerShop.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "Admin")]
         public IActionResult Add()
         {
             var model = new BeerViewModel
@@ -26,6 +28,7 @@ namespace MyBeerShop.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public IActionResult Add(BeerViewModel model)
         {
             if (ModelState.IsValid)
@@ -53,6 +56,7 @@ namespace MyBeerShop.Controllers
             return View(model);
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpGet]
         public IActionResult Edit(int id)
         {
@@ -81,6 +85,7 @@ namespace MyBeerShop.Controllers
             return View(model);
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         public IActionResult Edit(BeerViewModel model)
         {
@@ -91,6 +96,8 @@ namespace MyBeerShop.Controllers
                 {
                     return NotFound();
                 }
+
+                
 
                 beer.BeerName = model.BeerName;
                 beer.Producer = model.Producer;
@@ -112,7 +119,7 @@ namespace MyBeerShop.Controllers
             return View(model);
         }
 
-        [HttpGet]
+        [Authorize(Roles = "Admin")]
         public IActionResult Delete(int id)
         {
             var beer = _context.Beers
@@ -140,7 +147,8 @@ namespace MyBeerShop.Controllers
             return View(beer);
         }
 
-        [HttpPost]
+        
+        [Authorize(Roles = "Admin")]
         [ValidateAntiForgeryToken]
         public IActionResult DeleteConfirmed(int id)
         {
@@ -157,21 +165,49 @@ namespace MyBeerShop.Controllers
         }
 
 
-        public IActionResult All()
+        public IActionResult All(string searchString, string sortOrder)
         {
-            var beers = _context.Beers.Select(b => new BeerViewModel
-            {
-                Id = b.Id,
-                BeerName = b.BeerName,
-                Producer = b.Producer,
-                ImageUrl = b.ImageUrl,
-                Price = b.Price
-            }).ToList();
+            ViewData["CurrentFilter"] = searchString;
+            ViewData["NameSortParam"] = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            ViewData["ProducerSortParam"] = sortOrder == "Producer" ? "producer_desc" : "Producer";
+            ViewData["PriceSortParam"] = sortOrder == "Price" ? "price_desc" : "Price";
 
-            return View(beers);
+            var beers = from b in _context.Beers
+                        select b;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                beers = beers.Where(b => b.BeerName.Contains(searchString)
+                                       || b.Producer.Contains(searchString));
+            }
+
+            switch (sortOrder)
+            {
+                case "name_desc":
+                    beers = beers.OrderByDescending(b => b.BeerName);
+                    break;
+                case "Producer":
+                    beers = beers.OrderBy(b => b.Producer);
+                    break;
+                case "producer_desc":
+                    beers = beers.OrderByDescending(b => b.Producer);
+                    break;
+                case "Price":
+                    beers = beers.OrderBy(b => b.Price);
+                    break;
+                case "price_desc":
+                    beers = beers.OrderByDescending(b => b.Price);
+                    break;
+                default:
+                    beers = beers.OrderBy(b => b.BeerName);
+                    break;
+            }
+
+            return View(beers.ToList());
         }
 
-        public IActionResult Details(int id)
+
+    public IActionResult Details(int id)
         {
             var beer = _context.Beers
                 .Where(b => b.Id == id)

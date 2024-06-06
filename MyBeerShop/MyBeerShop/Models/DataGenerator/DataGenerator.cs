@@ -7,11 +7,11 @@ namespace MyBeerShop.Models.DataGenerator
     {
         public const string DefaultPassword = "123456";
 
-        public static IEnumerable<IdentityUser> SeedUsers()
+        public static IEnumerable<Customer> SeedUsers()
         {
-            IEnumerable<IdentityUser> users = new List<IdentityUser>()
+            IEnumerable<Customer> users = new List<Customer>()
             {
-                new IdentityUser()
+                new Customer()
                 {
                     Id = "BC4219EA-6BE7-47E2-8D2C-A0740BED3151",
                     UserName = "admin@gmail.com",
@@ -19,7 +19,7 @@ namespace MyBeerShop.Models.DataGenerator
                     Email = "admin@gmail.com",
                     NormalizedEmail = "ADMIN@GMAIL.COM"
                 },
-                new IdentityUser()
+                new Customer()
                 {
                     Id = "5F23C81D-9B0C-48BD-AC91-DDD4FB6D2DDA",
                     UserName = "guest@gmail.com",
@@ -29,7 +29,7 @@ namespace MyBeerShop.Models.DataGenerator
                 }
             };
 
-            var hasher = new PasswordHasher<IdentityUser>();
+            var hasher = new PasswordHasher<Customer>();
             foreach (var user in users)
             {
                 user.PasswordHash = hasher.HashPassword(user, DefaultPassword);
@@ -37,5 +37,24 @@ namespace MyBeerShop.Models.DataGenerator
 
             return users;
         }
+
+       /* public static IEnumerable<IdentityRole> SeedRoles()
+        {
+            return new List<IdentityRole>()
+            {
+                new IdentityRole()
+                {
+                    Id = "1",
+                    Name = "Admin",
+                    NormalizedName = "ADMIN"
+                },
+                new IdentityRole()
+                {
+                    Id = "2",
+                    Name = "User",
+                    NormalizedName = "USER"
+                }
+            };*/
         }
-}
+    }
+

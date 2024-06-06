@@ -1,4 +1,4 @@
-﻿@model IEnumerable<MyBeerShop.Models.Beers.BeerViewModel>
+﻿@model IEnumerable<MyBeerShop.Data.Entities.Beer>
 
 @{
     ViewData["Title"] = "All Beers";
@@ -6,20 +6,32 @@
 
 <h2 class="my-4">All Beers</h2>
 
+<p>
+    <form asp-action="All" method="get">
+        <p>
+            <input type="text" name="searchString" value="@ViewData["CurrentFilter"]" />
+            <input type="submit" value="Search" />
+        </p>
+    </form>
+</p>
+
 <div class="row">
     @foreach (var beer in Model)
     {
         <div class="col-md-4 mb-4">
-            <div class="card" style="height: 650px">
-                <img class="card-img-top" src="@beer.ImageUrl" alt="@beer.BeerName" style="height: 500px; object-fit: cover;">
-                <div class="card-body d-flex flex-column">
+            <div class="card">
+                <img class="card-img-top" src="@beer.ImageUrl" alt="@beer.BeerName">
+                <div class="card-body">
                     <h5 class="card-title">@beer.BeerName</h5>
+                    <p class="card-text">@beer.Producer</p>
                     <p class="card-text">@beer.Price.ToString("C")</p>
-                    <div class="mt-auto d-flex justify-content-between">
-                        <a href="@Url.Action("Details", "Beers", new { id = beer.Id })" class="btn btn-primary">View More</a>
+                    <a href="@Url.Action("Details", "Beers", new { id = beer.Id })" class="btn btn-primary">View More</a>
+                    @if (User.IsInRole("Admin")){
                         <a href="@Url.Action("Edit", "Beers", new { id = beer.Id })" class="btn btn-secondary">Edit</a>
-                        <a href="@Url.Action("Delete", "Beers", new { id = beer.Id })" class="btn btn-danger">Delete</a>
-                    </div>
+                        <form asp-action="Delete" asp-route-id="@beer.Id" method="post" class="d-inline">
+                            <button type="submit" class="btn btn-danger">Delete</button>
+                        </form>
+                    }
                 </div>
             </div>
         </div>

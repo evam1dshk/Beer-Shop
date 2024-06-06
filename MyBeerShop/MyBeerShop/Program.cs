@@ -2,6 +2,8 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using MyBeerShop.Data;
 using MyBeerShop.Data.Entities;
+using MyBeerShop.Infrastructure;
+using MyBeerShop.Models.DataGenerator;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -19,6 +21,7 @@ builder.Services.AddDefaultIdentity<Customer>(options =>
     options.Password.RequireLowercase = false;
     options.Password.RequireNonAlphanumeric = false;
 })
+.AddRoles<IdentityRole>()
 .AddEntityFrameworkStores<MyBeerShopDbContext>();
 
 builder.Services.AddTransient<IPasswordHasher<Customer>, PasswordHasher<Customer>>();
@@ -27,11 +30,13 @@ builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
 
+
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Home/Error");
     app.UseHsts();
 }
+
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
@@ -46,5 +51,7 @@ app.MapControllerRoute(
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
 app.MapRazorPages();
+
+app.SeedAdmin();
 
 app.Run();
