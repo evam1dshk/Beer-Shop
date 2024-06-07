@@ -21,6 +21,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\MyBeerShop.Data\MyBeerShop.Data.csproj" />
+    <ProjectReference Include="..\MyBeerShop.Services\MyBeerShop.Services.csproj" />
   </ItemGroup>
 
 </Project>

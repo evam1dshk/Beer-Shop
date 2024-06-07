@@ -17,22 +17,23 @@ namespace MyBeerShop.Data
         public DbSet<BeerType> BeerTypes { get; set; } = null!;
         public override DbSet<Customer> Users { get; set; }
         public DbSet<Cart> Carts { get; set; } = null!;
+        public DbSet<CartItem> CartItems { get; set; } = null!;
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
 
             base.OnModelCreating(builder);
 
-            // Configure relationships
-            builder.Entity<Cart>()
-                .HasOne(c => c.Beer)
-                .WithMany(b => b.Carts)
-                .HasForeignKey(c => c.BeerId);
 
             builder.Entity<Cart>()
-                .HasOne(c => c.Customer)
-                .WithMany(cu => cu.Carts)
-                .HasForeignKey(c => c.CustomerId);
+               .HasMany(c => c.Items)
+               .WithOne(i => i.Cart)
+               .HasForeignKey(i => i.CartId);
+
+            builder.Entity<CartItem>()
+                .HasOne(b => b.Beer)
+                .WithMany()
+                .HasForeignKey(b => b.BeerId);
 
             // Seed data
             builder.Entity<BeerType>().HasData(

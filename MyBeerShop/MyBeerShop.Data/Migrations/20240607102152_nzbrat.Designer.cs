@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using MyBeerShop.Data;
 
@@ -11,9 +12,10 @@ using MyBeerShop.Data;
 namespace MyBeerShop.Data.Migrations
 {
     [DbContext(typeof(MyBeerShopDbContext))]
-    partial class MyBeerShopDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240607102152_nzbrat")]
+    partial class nzbrat
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -318,7 +320,7 @@ namespace MyBeerShop.Data.Migrations
 
                     b.HasIndex("CartId");
 
-                    b.ToTable("CartItems");
+                    b.ToTable("cartItem");
                 });
 
             modelBuilder.Entity("MyBeerShop.Data.Entities.Customer", b =>

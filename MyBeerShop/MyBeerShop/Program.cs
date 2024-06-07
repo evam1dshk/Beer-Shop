@@ -4,6 +4,7 @@ using MyBeerShop.Data;
 using MyBeerShop.Data.Entities;
 using MyBeerShop.Infrastructure;
 using MyBeerShop.Models.DataGenerator;
+using MyBeerShop.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -26,10 +27,11 @@ builder.Services.AddDefaultIdentity<Customer>(options =>
 
 builder.Services.AddTransient<IPasswordHasher<Customer>, PasswordHasher<Customer>>();
 
+builder.Services.AddScoped<ICartService, CartService>();
+
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
-
 
 if (!app.Environment.IsDevelopment())
 {

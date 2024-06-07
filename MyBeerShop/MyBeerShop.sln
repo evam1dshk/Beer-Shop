@@ -5,7 +5,9 @@ VisualStudioVersion = 17.3.32901.215
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyBeerShop", "MyBeerShop\MyBeerShop.csproj", "{2D72A8F4-454C-4984-A87F-A6D05F634D3D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyBeerShop.Data", "MyBeerShop.Data\MyBeerShop.Data.csproj", "{A5C12299-D39D-4A12-840A-234C8591043D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyBeerShop.Data", "MyBeerShop.Data\MyBeerShop.Data.csproj", "{A5C12299-D39D-4A12-840A-234C8591043D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyBeerShop.Services", "MyBeerShop.Services\MyBeerShop.Services.csproj", "{945412EC-AD9E-49BD-A00C-889D434FABCB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{A5C12299-D39D-4A12-840A-234C8591043D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A5C12299-D39D-4A12-840A-234C8591043D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A5C12299-D39D-4A12-840A-234C8591043D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{945412EC-AD9E-49BD-A00C-889D434FABCB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{945412EC-AD9E-49BD-A00C-889D434FABCB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{945412EC-AD9E-49BD-A00C-889D434FABCB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{945412EC-AD9E-49BD-A00C-889D434FABCB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
