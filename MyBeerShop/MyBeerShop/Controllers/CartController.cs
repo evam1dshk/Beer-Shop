@@ -48,5 +48,17 @@ namespace MyBeerShop.Controllers
             await _cartService.ClearCartAsync(customerId);
             return RedirectToAction("Index");
         }
+
+        [HttpPost]
+        public async Task<IActionResult> ProceedToCheckout()
+        {
+            var customerId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var order = await _cartService.CreateOrderAsync(customerId);
+            if (order == null)
+            {
+                return RedirectToAction("Index");
+            }
+            return RedirectToAction("Details", "Orders", new { id = order.Id });
+        }
     }
 }

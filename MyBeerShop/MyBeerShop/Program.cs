@@ -29,6 +29,8 @@ builder.Services.AddTransient<IPasswordHasher<Customer>, PasswordHasher<Customer
 
 builder.Services.AddScoped<ICartService, CartService>();
 
+builder.Services.AddScoped<IOrderService, OrderService>();
+
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();

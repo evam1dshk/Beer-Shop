@@ -41,5 +41,6 @@ else
     </form>
 
     <h3>Total: @(Model.Sum(item => item.Quantity * item.Beer.Price).ToString("c"))</h3>
-    <a href="@Url.Action("Checkout", "Cart")" class="btn btn-primary">Proceed to Checkout</a>
+    <a href="@Url.Action("Checkout", "Orders")" class="btn btn-primary">Proceed to Checkout</a>
+
 }

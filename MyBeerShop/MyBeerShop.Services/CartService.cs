@@ -79,6 +79,37 @@ namespace MyBeerShop.Services
             cart.Items.Clear();
             await _context.SaveChangesAsync();
         }
+        public async Task<Order> CreateOrderAsync(string customerId)
+        {
+            var cart = await _context.Carts
+                .Include(c => c.Items)
+                .ThenInclude(i => i.Beer)
+                .FirstOrDefaultAsync(c => c.CustomerId == customerId);
+
+            if (cart == null || !cart.Items.Any())
+            {
+                return null;
+            }
+
+            var order = new Order
+            {
+                CustomerId = customerId,
+                OrderDate = DateTime.Now,
+                OrderItems = cart.Items.Select(i => new OrderItem
+                {
+                    BeerId = i.BeerId,
+                    Quantity = i.Quantity,
+                    Price = i.Beer.Price
+                }).ToList()
+            };
+
+            _context.Orders.Add(order);
+            _context.Carts.Remove(cart);
+
+            await _context.SaveChangesAsync();
+
+            return order;
+        }
     }
 }
 

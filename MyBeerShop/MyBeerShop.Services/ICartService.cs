@@ -13,5 +13,6 @@ namespace MyBeerShop.Services
         Task AddToCartAsync(string customerId, int beerId, int quantity);
         Task RemoveFromCartAsync(string customerId, int cartItemId);
         Task ClearCartAsync(string customerId);
+        Task<Order> CreateOrderAsync(string customerId);
     }
 }

@@ -1,0 +1,32 @@
+﻿@model MyBeerShop.Data.Entities.Order
+
+<h2>Order Details</h2>
+
+<div>
+    <h4>Order Date: @Model.OrderDate.ToString("g")</h4>
+    <h4>Total: @Model.OrderItems.Sum(i => i.Quantity * i.Price).ToString("c")</h4>
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Beer</th>
+            <th>Quantity</th>
+            <th>Price</th>
+            <th>Total</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.OrderItems)
+        {
+            <tr>
+                <td>@item.Beer.BeerName</td>
+                <td>@item.Quantity</td>
+                <td>@item.Price.ToString("c")</td>
+                <td>@(item.Quantity * item.Price)</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<a asp-action="Index" class="btn btn-primary">Back to Orders</a>

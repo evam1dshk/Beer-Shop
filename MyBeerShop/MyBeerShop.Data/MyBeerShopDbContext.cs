@@ -18,6 +18,8 @@ namespace MyBeerShop.Data
         public override DbSet<Customer> Users { get; set; }
         public DbSet<Cart> Carts { get; set; } = null!;
         public DbSet<CartItem> CartItems { get; set; } = null!;
+        public DbSet<Order> Orders { get; set; } = null!;
+        public DbSet<OrderItem> OrderItems { get; set; } = null!;
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -34,6 +36,16 @@ namespace MyBeerShop.Data
                 .HasOne(b => b.Beer)
                 .WithMany()
                 .HasForeignKey(b => b.BeerId);
+
+            builder.Entity<Order>()
+            .HasMany(o => o.OrderItems)
+            .WithOne(oi => oi.Order)
+            .HasForeignKey(oi => oi.OrderId);
+
+            builder.Entity<OrderItem>()
+                .HasOne(oi => oi.Beer)
+                .WithMany()
+                .HasForeignKey(oi => oi.BeerId);
 
             // Seed data
             builder.Entity<BeerType>().HasData(
