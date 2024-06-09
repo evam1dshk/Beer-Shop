@@ -2,6 +2,7 @@
 
 @{
     ViewData["Title"] = "Delete Beer";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h2>Delete Beer</h2>
@@ -13,11 +14,10 @@
         <p class="card-text">Price: @Model.Price.ToString("C")</p>
         <p class="card-text">Critic Score: @Model.CriticScore</p>
         <p class="card-text">Alcohol BV: @Model.AlcoholBV</p>
-        <p class="card-text">Description: @Model.Description</p>
         <p class="card-text">Testing Notes: @Model.TestingNotes</p>
         <p class="card-text">Packaging: @Model.Packaging</p>
     </div>
-   
+
     <div class="card-footer">
         <form asp-action="DeleteConfirmed" method="post">
             <input type="hidden" asp-for="Id" />

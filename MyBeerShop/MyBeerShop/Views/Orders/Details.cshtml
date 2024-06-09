@@ -1,32 +1,58 @@
 ﻿@model MyBeerShop.Data.Entities.Order
 
+@{
+    ViewData["Title"] = "Order Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
 <h2>Order Details</h2>
 
 <div>
-    <h4>Order Date: @Model.OrderDate.ToString("g")</h4>
-    <h4>Total: @Model.OrderItems.Sum(i => i.Quantity * i.Price).ToString("c")</h4>
-</div>
+    <h4>Order ID: @Model.Id</h4>
+    <dl class="row">
+        <dt class="col-sm-2">Customer</dt>
+        <dd class="col-sm-10">@Model.Customer?.UserName</dd>
 
-<table class="table">
-    <thead>
-        <tr>
-            <th>Beer</th>
-            <th>Quantity</th>
-            <th>Price</th>
-            <th>Total</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model.OrderItems)
-        {
+        <dt class="col-sm-2">Order Date</dt>
+        <dd class="col-sm-10">@Model.OrderDate.ToString("f")</dd>
+
+        <dt class="col-sm-2">Total Amount</dt>
+        <dd class="col-sm-10">@Model.TotalAmount.ToString("C")</dd>
+
+        <dt class="col-sm-2">Shipping Address</dt>
+        <dd class="col-sm-10">@Model.ShippingAddress</dd>
+
+        <dt class="col-sm-2">Billing Address</dt>
+        <dd class="col-sm-10">@Model.BillingAddress</dd>
+
+        <dt class="col-sm-2">Status</dt>
+        <dd class="col-sm-10">@Model.Status</dd>
+
+        <dt class="col-sm-2">Payment Method</dt>
+        <dd class="col-sm-10">@Model.PaymentMethod</dd>
+
+        <dt class="col-sm-2">Payment Status</dt>
+        <dd class="col-sm-10">@Model.PaymentStatus</dd>
+    </dl>
+
+    <h4>Order Items</h4>
+    <table class="table">
+        <thead>
             <tr>
-                <td>@item.Beer.BeerName</td>
-                <td>@item.Quantity</td>
-                <td>@item.Price.ToString("c")</td>
-                <td>@(item.Quantity * item.Price)</td>
+                <th>Product</th>
+                <th>Quantity</th>
+                <th>Price</th>
             </tr>
-        }
-    </tbody>
-</table>
-
-<a asp-action="Index" class="btn btn-primary">Back to Orders</a>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.OrderItems)
+            {
+                <tr>
+                    <td>@item.Beer?.BeerName</td>
+                    <td>@item.Quantity</td>
+                    <td>@item.Price.ToString("C")</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

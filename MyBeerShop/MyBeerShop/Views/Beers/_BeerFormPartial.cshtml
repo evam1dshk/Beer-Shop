@@ -45,12 +45,31 @@
             </div>
             <div class="form-group">
                 <label asp-for="Packaging"></label>
-                <textarea asp-for="Packaging" rows="4" class="form-control" placeholder="Packaging..."></textarea>
-                <span asp-validation-for="Packaging" class="small text-danger"></span>
+                <option value="" disabled selected>Select Packaging</option>
+                <option value="Can">Can</option>
+                <option value="Bottle">Bottle</option>
             </div>
             <div class="form-group">
                 <label asp-for="BeerTypeId">Beer Type</label>
                 <select asp-for="BeerTypeId" class="form-control">
+                    <option value="">Select Beer Type...</option>
+                    <option value="1">Abbey Ale</option>
+                    <option value="2">Ale</option>
+                    <option value="3">Brown Ale</option>
+                    <option value="4">Dark Lager</option>
+                    <option value="5">Golden Ale</option>
+                    <option value="6">IPA</option>
+                    <option value="7">Lager</option>
+                    <option value="8">Pale Ale</option>
+                    <option value="9">Pilsner</option>
+                    <option value="10">Porter</option>
+                    <option value="11">Sour Ale</option>
+                    <option value="12">Specialty</option>
+                    <option value="13">Stout</option>
+                    <option value="14">Strong Ale</option>
+                    <option value="15">Strong Lager</option>
+                    <option value="16">Trappist</option>
+                    <option value="17">Wheat Beer</option>
                     @foreach (var type in Model.BeerTypes)
                     {
                         <option value="@type.Id">@type.Name</option>
@@ -58,6 +77,7 @@
                 </select>
                 <span asp-validation-for="BeerTypeId" class="small text-danger"></span>
             </div>
+
             <input class="btn btn-primary mt-3" type="submit" value="Save" />
         </form>
     </div>

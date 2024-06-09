@@ -24,10 +24,5 @@
         <div class="col-12 text-center">
             <a href="@Url.Action("All", "Beers")" class="btn btn-primary">Back to Shop</a>
         </div>
-        @if (User.IsInRole("Admin"))
-        {
-            <a href="@Url.Action("Edit", "Beers", new { id = Model.Id })" class="btn btn-warning mb-2">Edit</a>
-            <a href="@Url.Action("Delete", "Beers", new { id = Model.Id })" class="btn btn-danger mb-2">Delete</a>
-        }
     </div>
 </div>

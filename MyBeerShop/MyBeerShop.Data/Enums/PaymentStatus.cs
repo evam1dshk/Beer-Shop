@@ -10,6 +10,7 @@ namespace MyBeerShop.Data.Enums
     {
         Pending,
         Completed,
+        Paid,
         Failed
     }
 }

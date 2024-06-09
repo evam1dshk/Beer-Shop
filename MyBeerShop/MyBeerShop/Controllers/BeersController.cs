@@ -104,9 +104,9 @@ namespace MyBeerShop.Controllers
                 beer.ImageUrl = model.ImageUrl;
                 beer.AlcoholBV = model.AlcoholBV;
                 beer.CriticScore = model.CriticScore;
-                beer.Description = model.Description;
                 beer.TestingNotes = model.TestingNotes;
                 beer.Packaging = model.Packaging;
+                beer.Description = model.Description;
                 beer.BeerTypeId = model.BeerTypeId;
                 beer.Price = model.Price;
 
@@ -133,8 +133,8 @@ namespace MyBeerShop.Controllers
                     Price = b.Price,
                     CriticScore = b.CriticScore,
                     AlcoholBV = b.AlcoholBV,
-                    Description = b.Description,
                     TestingNotes = b.TestingNotes,
+                    Description = b.Description,
                     Packaging = b.Packaging
                 })
                 .FirstOrDefault();

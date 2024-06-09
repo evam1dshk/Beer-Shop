@@ -1,13 +1,23 @@
 ﻿@model IEnumerable<MyBeerShop.Data.Entities.Order>
 
-<h2>Admin Panel - Orders</h2>
+@{
+    ViewData["Title"] = "Admin Panel";
+}
+
+<h2>Admin Panel</h2>
+
+<div>
+    <!-- Add Beer Button -->
+    <a href="@Url.Action("Add", "Beers")" class="btn btn-primary">Add Beer</a>
+</div>
+
+<hr />
 
 <table class="table">
     <thead>
         <tr>
             <th>Order ID</th>
-            <th>User ID</th>
-            <th>Order Date</th>
+            <th>Customer</th>
             <th>Total Amount</th>
             <th>Status</th>
             <th>Action</th>
@@ -18,19 +28,20 @@
         {
             <tr>
                 <td>@order.Id</td>
-                <td>@order.CustomerId</td>
-                <td>@order.OrderDate.ToString("MM/dd/yyyy")</td>
-                <td>$@order.TotalAmount</td>
+                <td>@(order.Customer != null ? order.Customer.UserName : "N/A")</td>
+                <td>@order.TotalAmount.ToString("C")</td>
                 <td>@order.Status</td>
                 <td>
-                    <form method="post" asp-action="UpdateOrderStatus" asp-controller="Admin">
+                    <form asp-action="UpdateOrderStatus" method="post">
                         <input type="hidden" name="orderId" value="@order.Id" />
-                        <select name="status" class="form-control">
-                            <option value="Pending">Pending</option>
-                            <option value="Confirmed">Confirmed</option>
-                            <option value="Declined">Declined</option>
-                        </select>
-                        <button type="submit" class="btn btn-primary btn-sm">Update</button>
+                        <div class="form-group">
+                            <select name="status" class="form-control">
+                                <option value="Pending">Pending</option>
+                                <option value="Confirmed">Confirmed</option>
+                                <option value="Declined">Declined</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Update</button>
                     </form>
                 </td>
             </tr>

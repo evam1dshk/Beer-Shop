@@ -10,6 +10,7 @@ namespace MyBeerShop.Data.Entities
         [Required]
         public string BeerName { get; set; } = null!;
 
+
         [Required]
         public string ImageUrl { get; set; } = null!;
 

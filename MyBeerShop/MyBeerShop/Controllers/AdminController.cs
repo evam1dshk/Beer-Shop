@@ -2,8 +2,9 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using MyBeerShop.Data.Entities;
+using MyBeerShop.Data.Enums;
 using MyBeerShop.Services;
-using System.Data;
+using System.Threading.Tasks;
 
 namespace MyBeerShop.Controllers
 {
@@ -19,24 +20,23 @@ namespace MyBeerShop.Controllers
             _userManager = userManager;
         }
 
-        [HttpGet]
-        public async Task<IActionResult> Orders()
+        public async Task<IActionResult> AdminPanel()
         {
             var orders = await _orderService.GetAllOrdersAsync();
             return View(orders);
         }
 
         [HttpPost]
-        public async Task<IActionResult> UpdateOrderStatus(int orderId, string status)
+        public async Task<IActionResult> UpdateOrderStatus(int orderId, OrderStatus status)
         {
             var result = await _orderService.UpdateOrderStatusAsync(orderId, status);
             if (result)
             {
-                return RedirectToAction("Orders");
+                return RedirectToAction("AdminPanel");
             }
 
             ModelState.AddModelError("", "Failed to update order status.");
-            return RedirectToAction("Orders");
-        }
+            return RedirectToAction("AdminPanel");
+    }
     }
 }

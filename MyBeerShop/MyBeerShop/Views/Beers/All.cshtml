@@ -6,6 +6,13 @@
 
 <h2 class="my-4">All Beers</h2>
 
+<div class="text-right mb-4">
+    @if (User.IsInRole("Admin"))
+    {
+        <a href="@Url.Action("Add", "Beers")" class="btn btn-primary">Add Beer</a>
+    }
+</div>
+
 <p>
     <form asp-action="All" method="get">
         <p>
@@ -26,12 +33,11 @@
                     <p class="card-text">@beer.Producer</p>
                     <p class="card-text">@beer.Price.ToString("C")</p>
                     <div class="text-center">
-                        <!-- Centered container for buttons -->
                         <a href="@Url.Action("Details", "Beers", new { id = beer.Id })" class="btn btn-primary">View More</a>
                     </div>
                     @if (User.IsInRole("Admin"))
                     {
-                        <div class="text-center">
+                        <div class="text-center mt-2">
                             <a href="@Url.Action("Edit", "Beers", new { id = beer.Id })" class="btn btn-secondary">Edit</a>
                             <form asp-action="Delete" asp-route-id="@beer.Id" method="post" class="d-inline">
                                 <button type="submit" class="btn btn-danger">Delete</button>
@@ -40,11 +46,11 @@
                     }
                     else
                     {
-                        <div class="text-center">
+                        <div class="text-center mt-2">
                             <!-- Add to Cart Button -->
                             <form asp-controller="Cart" asp-action="AddToCart" method="post">
                                 <input type="hidden" name="beerId" value="@beer.Id" />
-                                <input type="number" name="quantity" value="1" min="1" />
+                                <input type="number" name="quantity" value="1" min="1" class="form-control d-inline w-auto" />
                                 <button type="submit" class="btn btn-success">Add to Cart</button>
                             </form>
                         </div>

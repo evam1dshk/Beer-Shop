@@ -1,7 +1,8 @@
 ﻿@model IEnumerable<MyBeerShop.Data.Entities.Order>
 
 @{
-    ViewBag.Title = "Orders";
+    ViewData["Title"] = "Orders";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h2>All Orders</h2>
