@@ -11,4 +11,8 @@
     <ProjectReference Include="..\MyBeerShop.Data\MyBeerShop.Data.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Orders\" />
+  </ItemGroup>
+
 </Project>
